@@ -30,4 +30,18 @@ def context(store: Store, task: str, project: str, jac_version: str,
         if len(json.dumps(packet, ensure_ascii=False).encode('utf-8')) > max_bytes:
             packet['items'].pop()
             packet['truncated'] = True
+            # Select an attributable window rather than dropping a long guide.
+            # Hash/status always describe the complete source, not the excerpt.
+            match = next((m for m in re.finditer(r'\w+', rec['content'])
+                          if m.group().lower() in terms), None)
+            start = max(0, match.start() - 150) if match else 0
+            size = min(1800, len(rec['content']) - start)
+            while size >= 80:
+                item.update(content=rec['content'][start:start + size], is_excerpt=True,
+                            excerpt_start=start, excerpt_end=start + size)
+                packet['items'].append(item)
+                if len(json.dumps(packet, ensure_ascii=False).encode('utf-8')) <= max_bytes:
+                    break
+                packet['items'].pop()
+                size //= 2
     return packet

@@ -3,7 +3,7 @@ import tempfile
 import unittest
 from pathlib import Path
 
-from jacbrain.store import Store
+from jacbrain.store import Store, digest
 from jacbrain.ingest import ingest_file
 from jacbrain.retrieve import context
 
@@ -18,7 +18,7 @@ class GraphTests(unittest.TestCase):
         self.tmp.cleanup()
 
     def add(self, text='walker finds offers', **kwargs):
-        return self.store.add(kind='Concept', content=text, source_uri='test:' + text,
+        return self.store.add(kind='Concept', content=text, source_uri='test:' + digest(text),
                               project='demo', jac_version='0.37.23', **kwargs)
 
     def test_idempotent_and_versioned(self):
@@ -54,6 +54,17 @@ class GraphTests(unittest.TestCase):
         self.store.link(first, second, 'depends_on')
         result = context(self.store, 'walker', 'demo', '0.37.23', 4000)
         self.assertEqual({x['id'] for x in result['items']}, {first, second})
+
+    def test_long_document_returns_attributed_excerpt(self):
+        text = ('ordinary reference prose ' * 300) + 'needlewalker definition' + (' trailing' * 300)
+        identity = self.add(text)
+        packet = context(self.store, 'needlewalker', 'demo', '0.37.23', 3000)
+        self.assertEqual(len(packet['items']), 1)
+        item = packet['items'][0]
+        self.assertIn('needlewalker', item['content'])
+        self.assertTrue(item['is_excerpt'])
+        self.assertEqual(item['content_hash'], self.store.get(identity)['content_hash'])
+        self.assertEqual(item['content'], text[item['excerpt_start']:item['excerpt_end']])
 
     def test_ingestion_explicit_file_and_symbols(self):
         path = Path(self.tmp.name) / 'sample.jac'

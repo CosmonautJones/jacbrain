@@ -25,8 +25,10 @@ boundary against a local process that can edit the SQLite database.
 ID, kind, content, source URI, content hash, status and Jac version. The bound
 applies to the UTF-8 bytes of `json.dumps(packet, ensure_ascii=False)`, excluding
 transport framing and the CLI newline. It is a conservative size control,
-not a tokenizer-based count. Whole records that do not fit are omitted;
-an oversized top result can yield an empty packet. Split long sources first.
+not a tokenizer-based count. Records that do not fit use a bounded matching
+excerpt with character offsets and `is_excerpt: true`. The hash/status still
+describe the complete stored source. Metadata alone may exceed a tiny budget,
+in which case the item is omitted and `truncated` is true.
 
 Exact project and compiler version are required. No implicit fallback to older
 evidence. Related records may be included even if they have no lexical match.

@@ -27,7 +27,7 @@ Use small changes with behavioral tests and document failure modes.
 * **Version mismatch:** re-ingest under the actual version after reviewing
   applicability. Do not relabel old receipts to make a check pass.
 * **Empty context:** confirm project/version, query words, and byte budget.
-  Oversized records are omitted whole. Break long documents into explicit files.
+  Long records use matching excerpts; tiny budgets may omit even their metadata.
 * **Imports fail during validation:** the MCP tool checks an isolated temporary
   snippet. Run project-level `jac check` and tests separately.
 * **MCP client cannot import jacbrain:** install this repo with the same Python

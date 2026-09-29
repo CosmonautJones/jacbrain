@@ -12,6 +12,37 @@ from jacbrain.validation import JacMCP
 
 
 class InterfaceTests(unittest.TestCase):
+    def test_malformed_catalog_is_error_and_server_remains_available(self):
+        catalogs = [None, {}, [{}], [None], [{'name': 123}]]
+        with tempfile.TemporaryDirectory() as tmp:
+            store = Store(Path(tmp) / 'brain.db')
+            try:
+                identity = store.add(kind='Pattern', content='node Example {}',
+                                     source_uri='test:catalog', project='test', jac_version='0.37.23')
+                requests = [
+                    {'jsonrpc': '2.0', 'id': 1, 'method': 'tools/call', 'params': {
+                        'name': 'validate', 'arguments': {'identity': identity}}},
+                    {'jsonrpc': '2.0', 'id': 2, 'method': 'ping'},
+                ]
+                for catalog in catalogs:
+                    with self.subTest(catalog=catalog):
+                        with patch('jacbrain.validation.compiler_version', return_value='0.37.23'), \
+                             patch('jacbrain.validation.JacMCP') as client_type:
+                            client = client_type.return_value.__enter__.return_value
+                            client.request.return_value = {'tools': catalog}
+                            output = io.StringIO()
+                            serve(store, io.StringIO('\n'.join(map(json.dumps, requests))), output, ['jac'])
+                        responses = list(map(json.loads, output.getvalue().splitlines()))
+                        self.assertEqual(len(responses), 2)
+                        self.assertTrue(responses[0]['result']['isError'])
+                        self.assertIn('malformed tool catalog', responses[0]['result']['content'][0]['text'])
+                        self.assertEqual(responses[1]['result'], {})
+                        self.assertEqual(store.get(identity)['status'], 'candidate')
+                        self.assertFalse(any(r['kind'] == 'Validation'
+                                             for r in store.records('test', '0.37.23')))
+            finally:
+                store.close()
+
     def test_decode_requires_real_structured_result(self):
         result = {'content': [{'type': 'text', 'text': '{"valid": true, "errors": []}'}]}
         self.assertTrue(decode_tool_result(result)['valid'])

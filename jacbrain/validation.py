@@ -57,8 +57,22 @@ class JacMCP:
 
     def send(self, value: dict[str, Any]) -> None:
         assert self.proc.stdin is not None
-        self.proc.stdin.write(json.dumps(value) + '\n')
-        self.proc.stdin.flush()
+        completed: queue.Queue[Exception | None] = queue.Queue()
+        def write() -> None:
+            try:
+                self.proc.stdin.write(json.dumps(value) + '\n')
+                self.proc.stdin.flush()
+                completed.put(None)
+            except Exception as exc:
+                completed.put(exc)
+        self.writer = threading.Thread(target=write, daemon=True)
+        self.writer.start()
+        try:
+            error = completed.get(timeout=self.timeout)
+        except queue.Empty as exc:
+            raise RuntimeError('Jac MCP write timed out') from exc
+        if error is not None:
+            raise RuntimeError('Jac MCP input closed') from error
 
     def request(self, method: str, params: dict[str, Any]) -> dict[str, Any]:
         self.counter += 1
@@ -87,8 +101,11 @@ class JacMCP:
         raise RuntimeError('Jac MCP timed out')
 
     def __exit__(self, *_: Any) -> None:
-        if self.proc.stdin:
+        writing = hasattr(self, 'writer') and self.writer.is_alive()
+        if self.proc.stdin and not writing:
             self.proc.stdin.close()
+        if writing:
+            self.proc.kill()
         try:
             self.proc.wait(timeout=3)
         except subprocess.TimeoutExpired:
@@ -100,6 +117,10 @@ class JacMCP:
             except ProcessLookupError:
                 pass
         self.reader.join(timeout=0.1)
+        if writing:
+            self.writer.join(timeout=0.1)
+            if self.proc.stdin and not self.writer.is_alive():
+                self.proc.stdin.close()
         # A Windows launcher descendant may inherit stdout. Never block on its
         # stream lock; the daemon reader owns that handle until it observes EOF.
         if self.proc.stdout and not self.reader.is_alive():
@@ -132,7 +153,10 @@ def validate_record(store: Store, identity: str, command: list[str]) -> dict[str
         raise ValueError(f'Installed Jac {version} does not match evidence {rec["jac_version"]}')
     with JacMCP(command) as client:
         tools = client.request('tools/list', {})
-        if 'validate_jac' not in {t['name'] for t in tools.get('tools', [])}:
+        catalog = tools.get('tools')
+        if not isinstance(catalog, list) or not all(isinstance(t, dict) and isinstance(t.get('name'), str) for t in catalog):
+            raise RuntimeError('Jac MCP returned a malformed tool catalog')
+        if 'validate_jac' not in {t['name'] for t in catalog}:
             raise RuntimeError('Installed Jac MCP does not expose validate_jac')
         result = decode_tool_result(client.request('tools/call', {
             'name': 'validate_jac', 'arguments': {'code': rec['content']}}))
