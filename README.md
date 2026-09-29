@@ -26,8 +26,9 @@ graph: a collection of records linked by how they relate. When an agent starts
 a task, JacBrain returns a small selection of relevant records for that project
 and Jac version.
 
-The goal is less repeated explanation and more useful context. Token savings
-are a goal we still need to measure.
+The goal is to build effectively with Jac using less repeated explanation and
+fewer reference tokens. JacBrain supplies reusable language knowledge even when
+an agent does not reliably know Jac. It does not retrain the agent.
 
 ## How it works
 
@@ -71,6 +72,20 @@ nonsecret files to ingest.
 
 **Next:** [connect a coding agent and enable compiler checks →](docs/GETTING-STARTED.md)
 
+### Load Jac's actual reference guides
+
+With Jac 0.37.23 available, import its bundled knowledge once:
+
+```sh
+python -m jacbrain sync-guides
+python -m jacbrain context "walker with one typed report after traversal" --project my-app
+```
+
+This imports the installed guides, splits them into source-linked sections,
+and connects their explicit references. Task queries can then use that language
+knowledge alongside your project's notes. Re-run the import to refresh it.
+See the [Windows setup](docs/GETTING-STARTED.md) if Jac runs in WSL.
+
 ## Where it stands
 
 **Early working foundation.** You can use the local tools today; the complete
@@ -78,14 +93,24 @@ learning loop is still being built.
 
 | Working today | Still to build |
 | :--- | :--- |
-| Save notes, code, and linked evidence locally | Extract project relationships with Jac’s compiler |
+| Import versioned Jac guides and save project evidence locally | Extract project relationships with Jac’s compiler |
 | Retrieve context by task, project, and Jac version | Connect the native Jac graph to persistent storage |
 | Check snippets through Jac MCP and save the results | Verify fixes against full projects and behavioral tests |
-| Use the CLI, MCP interface, and separate Jac graph demo | Measure whether it saves tokens and improves results |
+| Use the CLI, MCP interface, and separate Jac graph demo | Measure broader tasks, repairs, and graph-specific value |
 
 The persistent service currently uses Python and SQLite. The Jac nodes, edges,
 and walkers form a separate runnable graph model. “Learning” here means keeping
 evidence across sessions, not training an AI model.
+
+### First measured result
+
+In a four-task pilot, selected context used **73% fewer reference tokens** than
+curated complete guides. Both approaches passed all four compiler and behavior
+checks. Total observed model input fell by **16%**, including tool overhead.
+
+That is an encouraging small result, not proof of general savings. Graph and
+plain section retrieval returned identical context, so the graph itself has
+not yet shown an advantage. [Read the experiment and its limits →](benchmarks/results/2026-09-29/README.md)
 
 ## Explore further
 

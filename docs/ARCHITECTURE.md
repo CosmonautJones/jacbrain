@@ -17,6 +17,7 @@ Only a successful, matching compiler receipt promotes a candidate to
 ```mermaid
 flowchart LR
   A[Explicit local files] --> B[Ingest and fingerprint]
+  I[Installed Jac MCP guides] --> B
   B --> C[(SQLite evidence graph)]
   C --> D[Rank and bound context]
   D --> E[Coding agent]
@@ -31,10 +32,11 @@ flowchart LR
 * `jacbrain/store.py`: transactional SQLite records, typed relations, receipts.
 * `jacbrain/ingest.py`: explicit Markdown/text/Jac ingestion. Jac declaration
   extraction is lexical scaffolding, not a resolved compiler symbol graph.
+* `jacbrain/corpus.py`: installed MCP guide discovery, heading sections, hashes,
+  explicit guide relationships, atomic refresh and retired-section handling.
 * `jacbrain/retrieve.py`: deterministic lexical ranking plus one-hop graph
   context, exact version/project filters, conservative serialized byte bound.
-* `jacbrain/validation.py`: bounded stdio MCP client; only `validate_jac` is
-  called. No arbitrary command execution or snippet execution is exposed.
+* `jacbrain/validation.py`: bounded stdio MCP client; `validate_jac` checks snippets; corpus import uses resource listing/reading. No arbitrary command execution or snippet execution is exposed.
 * `jacbrain/server.py`: small stdio MCP-facing adapter for local agents.
 * `graph/`: independently runnable Jac-native node/edge/walker model. This is
   the target native execution model, not yet the SQLite service's backing store.
@@ -64,10 +66,21 @@ only trusted source on a trusted machine; hostile imports/comptime are outside
 this MVP threat model. Shared users, remote hosting and adversarial code need
 isolation before enabling validation.
 
+## Shared language knowledge
+
+The `@jac-docs` project holds installed language guides at their observed Jac
+version. Retrieval includes it alongside the requested project's records at
+that same version. This is a local organizational convention, not a security
+boundary. `--project-only` excludes it. Ranking favors rare matching terms;
+optional one-hop expansion follows links from leading matches. `--flat`
+disables expansion for comparison. Refresh stages all resource reads before
+one transaction; failures retain the previous corpus. Full refresh retires
+removed guides, while a partial URI refresh touches only selected guides.
+
 ## Evaluation
 
-Compare full docs, official Jac MCP alone, lexical retrieval, and graph-expanded
-retrieval on held-out Jac tasks. Measure serialized context bytes, actual model
-tokens with a named tokenizer, compiler acceptance, behavioral tests, repair
-rounds and wall time. Do not claim token savings or task-quality gains until
-those measurements exist. Old versions are filtered, not silently substituted.
+The [first four-task pilot](../benchmarks/results/2026-09-29/README.md) found
+smaller reference packets with the same four passing behavioral outcomes as
+curated complete guides. It did not establish graph-specific value: lexical
+and graph context were identical. Repeated, harder tasks and equal-budget
+repair loops are needed before broader effectiveness or cost claims.

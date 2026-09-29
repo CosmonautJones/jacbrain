@@ -4,6 +4,33 @@ Start with the [README quick start](../README.md#try-it). The steps below add
 real Jac compiler validation and connect JacBrain to a coding agent. Run commands
 from the repository root.
 
+## Import the language knowledge
+
+On Linux/macOS with Jac on PATH:
+
+```sh
+python -m jacbrain sync-guides
+python -m jacbrain context "typed walker report after traversal" --project my-app
+```
+
+PowerShell with Jac installed inside WSL:
+
+```powershell
+$env:JACBRAIN_JAC_COMMAND = '["wsl","-d","Ubuntu","--","jac"]'
+python -m jacbrain sync-guides
+python -m jacbrain context "typed walker report after traversal" --project my-app
+```
+
+If WSL cannot resolve `jac`, use its absolute installed path as the last array
+item. Guide imports use the actual installed compiler version. Queries default
+to 0.37.23; set `--jac-version` to the imported version when using another.
+
+The shared corpus uses the conventional project name `@jac-docs`. Context includes
+it by default while keeping other projects' notes separate. Use `--project-only`
+to exclude guides, or `--flat` to compare lexical retrieval without graph edges.
+Partial refresh: `python -m jacbrain sync-guides --uri jac://guide/jac-types`.
+The importer stages all selected resources before replacing them atomically.
+
 ## Complete the compiler loop
 
 Install the official [Jac 0.37.23 release](https://github.com/jaseci-labs/jac/releases/tag/v0.37.23)
