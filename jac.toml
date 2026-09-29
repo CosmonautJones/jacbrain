@@ -1,0 +1,10 @@
+[project]
+name = "jacbrain"
+version = "0.1.0"
+description = "Compiler-grounded engineering graph scaffold"
+entry-point = "main"
+kind = "cli"
+jac-version = "==0.37.23"
+
+[dev]
+test_jobs = "0"

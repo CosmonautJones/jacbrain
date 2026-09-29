@@ -1,0 +1,48 @@
+name: checks
+on:
+  push:
+  pull_request:
+permissions:
+  contents: read
+jobs:
+  python:
+    strategy:
+      matrix:
+        os: [ubuntu-latest, windows-latest]
+        python: ['3.11', '3.13']
+    runs-on: ${{ matrix.os }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: ${{ matrix.python }}
+      - run: python -m unittest discover -s tests -v
+      - run: python -m compileall -q jacbrain
+      - run: python -m pip install .
+      - run: jacbrain --help
+  jac:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Install pinned Jac release
+        shell: bash
+        run: |
+          set -euo pipefail
+          base=https://github.com/jaseci-labs/jac/releases/download/v0.37.23
+          curl -fsSL "$base/jac-0.37.23-linux-x86_64" -o /tmp/jac
+          curl -fsSL "$base/jac-0.37.23-linux-x86_64.sha256" -o /tmp/jac.sha256
+          expected=$(cut -d ' ' -f1 /tmp/jac.sha256)
+          echo "$expected  /tmp/jac" | sha256sum -c -
+          chmod +x /tmp/jac
+          echo /tmp >> "$GITHUB_PATH"
+      - run: jac --version
+      - run: jac check main.jac graph tests/graph_tests.jac examples/walker-pattern.jac
+      - run: jac test tests/graph_tests.jac -v
+      - run: jac run main.jac
+      - name: Real MCP acceptance and rejection
+        env:
+          JACBRAIN_LIVE_JAC: '1'
+        run: python -m unittest discover -s tests -v
