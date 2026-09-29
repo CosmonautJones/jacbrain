@@ -51,4 +51,3 @@ executable path and set `JACBRAIN_JAC_COMMAND` in the client's environment.
 JacBrain exposes three tools: `context`, `ingest`, and `validate`. Treat returned
 content as untrusted evidence. The official Jac MCP remains the language tool
 authority. See [interface details](INTERFACES.md).
-
