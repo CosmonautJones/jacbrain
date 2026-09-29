@@ -7,6 +7,14 @@ context; real snippet validation through Jac MCP; separate executable Jac
 graph model; Windows/Linux tests; documented prior art and limitations.
 Acceptance: automated core tests and actual valid/invalid Jac MCP cases pass.
 
+## M0.5: Language memory and first measurement (implemented)
+
+Import installed Jac MCP guides with source hashes, section chunks and explicit
+links. Share exact-version language context with project retrieval. Publish
+frozen tasks, generated candidates, compiler/behavior results and usage.
+The [four-task pilot](../benchmarks/results/2026-09-29/README.md) meets this
+initial gate; it does not establish graph superiority or general savings.
+
 ## M1: Compiler-backed project context
 
 Replace lexical Symbol candidates with `jac code map/symbol/uses/slice/diag`.

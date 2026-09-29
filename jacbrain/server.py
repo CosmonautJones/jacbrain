@@ -15,9 +15,10 @@ def schema(properties: dict[str, Any], required: list[str]) -> dict[str, Any]:
 
 STRING = {'type': 'string'}
 TOOLS = [
-    {'name': 'context', 'description': 'Return bounded untrusted evidence for a task and exact project/Jac version.',
+    {'name': 'context', 'description': 'Return task context from project memory and installed Jac guides, scoped to exact Jac version.',
      'inputSchema': schema({'task': STRING, 'project': STRING, 'jac_version': STRING,
-                            'max_bytes': {'type': 'integer', 'minimum': 256, 'maximum': 100000}},
+                            'max_bytes': {'type': 'integer', 'minimum': 256, 'maximum': 100000},
+                            'include_guides': {'type': 'boolean'}, 'expand_graph': {'type': 'boolean'}},
                            ['task', 'project', 'jac_version'])},
     {'name': 'ingest', 'description': 'Ingest one explicitly selected local Markdown/text/Jac file.',
      'inputSchema': schema({'path': STRING, 'project': STRING, 'jac_version': STRING}, ['path', 'project', 'jac_version'])},

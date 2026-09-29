@@ -1,0 +1,183 @@
+{
+  "schema_version": 1,
+  "frozen_on": "2026-09-29",
+  "jac_version": "0.37.23",
+  "purpose": "Small diagnostic pilot; not a representative benchmark or causal proof of retrieval advantage.",
+  "shared_files": [
+    {
+      "path": "jac.toml",
+      "template": "[project]\nname = \"jacbrain-benchmark\"\nversion = \"0.1.0\"\nkind = \"cli\"\njac-version = \"==0.37.23\"\n"
+    }
+  ],
+  "check_command": [
+    "jac",
+    "check"
+  ],
+  "run_command_prefix": [
+    "jac",
+    "run",
+    "--backend",
+    "python",
+    "--no-cache"
+  ],
+  "per_command_timeout_seconds": 45,
+  "tasks": [
+    {
+      "id": "walker-traversal-reports",
+      "prompt": "Write only Jac source for walker CollectEnabled. The harness already declares node Item with name: str and enabled: bool = True; do not redeclare Item. The walker is spawned at root and must follow all outgoing edges through a finite tree of Item nodes. Collect names only from enabled Item nodes, but continue traversal through disabled ones. Emit exactly one report containing the collected names sorted alphabetically, including an empty list when nothing matches. Declare a typed report channel. Repeated spawns must not share collection state. Do not mutate graph nodes. Return only the walker declaration, without Markdown or demonstration code.",
+      "baseline_guides": [
+        "jac-essentials",
+        "jac-walker-patterns",
+        "jac-node-edge-patterns"
+      ],
+      "expected_concepts": [
+        "typed walker has fields and independent defaults",
+        "Root entry, Item entry, Root exit",
+        "here versus self",
+        "visit statement continues graph traversal",
+        "accumulate then report once; list-of-list report channel"
+      ],
+      "files": [
+        {
+          "path": "main.jac",
+          "template": "node Item {\n    has name: str, enabled: bool = True;\n}\n\n{{solution}}\n\nwith entry {\n    empty = root spawn CollectEnabled();\n    assert empty.reports == [[]], \"empty traversal must report once\";\n    bridge = Item(name=\"bridge\", enabled=False);\n    leaf = Item(name=\"leaf\");\n    side = Item(name=\"side\");\n    _detached = Item(name=\"detached\");\n    root ++> bridge;\n    bridge ++> leaf;\n    root ++> side;\n    first = root spawn CollectEnabled();\n    assert first.reports == [[\"leaf\", \"side\"]], \"traverse through disabled nodes, exclude detached nodes\";\n    again = root spawn CollectEnabled();\n    assert again.reports == [[\"leaf\", \"side\"]], \"each spawn must have independent state\";\n    assert not bridge.enabled;\n    assert leaf.name == \"leaf\" and side.name == \"side\";\n    print(\"JACBRAIN_PASS_WALKER\");\n}\n"
+        }
+      ],
+      "solution_file": "main.jac",
+      "check_files": [
+        "main.jac"
+      ],
+      "run_file": "main.jac",
+      "success_marker": "JACBRAIN_PASS_WALKER",
+      "forbidden_stdout": [],
+      "manual_constraints": [
+        "Uses walker abilities and traversal rather than graph-inspection helpers.",
+        "Typed report channel declared."
+      ],
+      "prompt_sha256": "671f2a38b9426ca80e0d185ed83ea291c691cc890b800b824697e27e918b8e8d",
+      "fixtures_sha256": "a9dd9242a90de1979e73b4287a65e7cbf9e8deaae806f1176d1243f1a217ebea"
+    },
+    {
+      "id": "typed-fields-postinit",
+      "prompt": "Write only Jac source declaring obj InvoiceLine. It must have required fields sku: str and unit_price: int, quantity: int defaulting to 1, and tags: list[str] defaulting to a fresh empty list per instance. Declare subtotal: int as a computed post-initialization field equal to unit_price times quantity. Callers must not need to pass subtotal. Preserve an explicitly supplied tags list. All fields must be typed and declared; use Jac constructor generation and postinit rather than a Python __init__ or embedded Python. Quantity zero is valid. Return only the object declaration, without Markdown or demonstration code.",
+      "baseline_guides": [
+        "jac-essentials",
+        "jac-has-fields",
+        "jac-types"
+      ],
+      "expected_concepts": [
+        "required fields before defaulted fields",
+        "typed has declarations and automatic constructors",
+        "mutable defaults per instance",
+        "postinit field exclusion from constructor",
+        "def postinit initializes derived fields"
+      ],
+      "files": [
+        {
+          "path": "main.jac",
+          "template": "{{solution}}\n\nwith entry {\n    first = InvoiceLine(sku=\"A\", unit_price=7);\n    second = InvoiceLine(sku=\"B\", unit_price=5, quantity=3, tags=[\"bulk\"]);\n    third = InvoiceLine(sku=\"C\", unit_price=11, quantity=0);\n    assert first.sku == \"A\" and first.unit_price == 7;\n    assert first.quantity == 1 and first.subtotal == 7;\n    assert second.quantity == 3 and second.subtotal == 15;\n    assert third.subtotal == 0;\n    assert first.tags == [] and third.tags == [];\n    first.tags.append(\"sale\");\n    assert second.tags == [\"bulk\"] and third.tags == [], \"list defaults must not leak between instances\";\n    print(\"JACBRAIN_PASS_FIELDS\");\n}\n"
+        }
+      ],
+      "solution_file": "main.jac",
+      "check_files": [
+        "main.jac"
+      ],
+      "run_file": "main.jac",
+      "success_marker": "JACBRAIN_PASS_FIELDS",
+      "forbidden_stdout": [],
+      "manual_constraints": [
+        "Uses postinit field and method, not a property or custom constructor.",
+        "No embedded Python."
+      ],
+      "prompt_sha256": "295169ad7a23eda4f9097e63c09eaa8de2fae7a557bc7afe5a1ce42ebbdbd361",
+      "fixtures_sha256": "469d0d3a0745150c40890e9b2c66c667122a8e99dffc3b581f218c31e19f97e7"
+    },
+    {
+      "id": "dict-items-typed-lambda",
+      "prompt": "Write Jac function rank_scores(scores: dict[str, int], minimum: int) -> list[str]. Return names whose scores are at least minimum, ordered by descending score and then ascending name for ties. Support empty dictionaries and negative scores. Leave the input dictionary unchanged. Build the eligible entries by iterating over scores.items() with tuple unpacking, and use sorted with a typed Jac lambda as the sort key. Return only the function and any required standard-library imports, without Markdown or demonstration code. Do not use embedded Python.",
+      "baseline_guides": [
+        "jac-essentials",
+        "jac-core-cheatsheet",
+        "jac-types"
+      ],
+      "expected_concepts": [
+        "parenthesized tuple unpacking in for loops",
+        "typed parenthesized lambda parameters and brace bodies",
+        "tuple sort keys for descending score and ascending name",
+        "dict and list generic annotations",
+        "inclusive filtering without input mutation"
+      ],
+      "files": [
+        {
+          "path": "main.jac",
+          "template": "{{solution}}\n\nwith entry {\n    scores: dict[str, int] = {\"z\": 4, \"a\": 4, \"m\": -2, \"b\": 9};\n    assert rank_scores(scores, 0) == [\"b\", \"a\", \"z\"];\n    assert rank_scores(scores, 4) == [\"b\", \"a\", \"z\"], \"threshold is inclusive\";\n    assert rank_scores(scores, 10) == [];\n    assert rank_scores(scores, -2) == [\"b\", \"a\", \"z\", \"m\"];\n    assert rank_scores({}, 0) == [];\n    assert scores == {\"z\": 4, \"a\": 4, \"m\": -2, \"b\": 9}, \"input must be unchanged\";\n    assert rank_scores({\"beta\": -3, \"alpha\": -3, \"top\": 0}, -3) == [\"top\", \"alpha\", \"beta\"];\n    print(\"JACBRAIN_PASS_LAMBDA\");\n}\n"
+        }
+      ],
+      "solution_file": "main.jac",
+      "check_files": [
+        "main.jac"
+      ],
+      "run_file": "main.jac",
+      "success_marker": "JACBRAIN_PASS_LAMBDA",
+      "forbidden_stdout": [],
+      "manual_constraints": [
+        "Iterates scores.items() with tuple unpacking.",
+        "Uses sorted with a typed Jac lambda key.",
+        "No embedded Python."
+      ],
+      "prompt_sha256": "ade77337f81f6fe5828975d279c5a644a737d1cc99be074690bf8960732ca98c",
+      "fixtures_sha256": "3d478a4ab565f491cc01b7c4c450c5515d7d1745ab51be3029e2612fa8ae150f"
+    },
+    {
+      "id": "stdlib-import-main-guard",
+      "prompt": "Write complete Jac module date_math.jac containing days_between(start: str, end: str) -> int. Inputs are ISO calendar dates YYYY-MM-DD. Return end minus start in days, preserving negative differences and handling leap years correctly. Invalid dates must raise ValueError. Use an explicit selective import from Python datetime and its date parser; do not hand-code calendar arithmetic or embed Python. The module must print exactly \"date helper ready\" when run directly, but must print nothing when imported by another Jac module. Return only the module source, without Markdown.",
+      "baseline_guides": [
+        "jac-essentials",
+        "jac-core-cheatsheet",
+        "jac-python-interop"
+      ],
+      "expected_concepts": [
+        "selective brace imports without trailing semicolon",
+        "explicit Python stdlib imports",
+        "typed function parameters and return",
+        "guarded with entry:__main__ versus import-time with entry",
+        "stdlib date arithmetic and ValueError propagation"
+      ],
+      "files": [
+        {
+          "path": "date_math.jac",
+          "template": "{{solution}}\n"
+        },
+        {
+          "path": "main.jac",
+          "template": "import from date_math { days_between }\n\nwith entry {\n    assert days_between(\"2024-02-28\", \"2024-03-01\") == 2;\n    assert days_between(\"2025-02-28\", \"2025-03-01\") == 1;\n    assert days_between(\"2025-01-02\", \"2025-01-01\") == -1;\n    assert days_between(\"2025-06-01\", \"2025-06-01\") == 0;\n    rejected = False;\n    try { _ = days_between(\"2025-02-30\", \"2025-03-01\"); }\n    except ValueError { rejected = True; }\n    assert rejected, \"invalid dates must preserve ValueError\";\n    print(\"JACBRAIN_PASS_IMPORTS\");\n}\n"
+        }
+      ],
+      "solution_file": "date_math.jac",
+      "check_files": [
+        "date_math.jac",
+        "main.jac"
+      ],
+      "run_file": "main.jac",
+      "success_marker": "JACBRAIN_PASS_IMPORTS",
+      "forbidden_stdout": [
+        "date helper ready"
+      ],
+      "additional_runs": [
+        {
+          "file": "date_math.jac",
+          "required_stdout_lines": [
+            "date helper ready"
+          ]
+        }
+      ],
+      "manual_constraints": [
+        "Uses selective datetime import and date parser.",
+        "Uses guarded Jac entry, not argv/path inspection.",
+        "No embedded Python."
+      ],
+      "prompt_sha256": "6553f04f774650710904772012bc781734c8ca94e07095b17f7bf595bce68a97",
+      "fixtures_sha256": "717749296343ac2f21954e5ed51f1a2e0bf341335e3e2ecc53bf4e9b97d02b1c"
+    }
+  ]
+}

@@ -1,0 +1,789 @@
+{
+  "context_measurements": {
+    "timestamp": "2026-09-29T16:13:38.862885+00:00",
+    "snapshot": {
+      "jac_version": "0.37.23",
+      "documents": 47,
+      "chunks": 389,
+      "edges": 717,
+      "total_documents": 47,
+      "total_chunks": 389,
+      "snapshot_hash": "e408e1f90caf9a8cff84c8969025c199cf9e640da9ef7498328a9dd6b47360e7"
+    },
+    "tokenizer": "tiktoken 0.12.0 / o200k_base (context comparison, not model billing)",
+    "max_bytes": 6000,
+    "tasks_sha256": "339ad28f3c581b0d6e921ff822c023cf5d927ad81777db327d867950107ba3c5",
+    "contexts": [
+      {
+        "task": "walker-traversal-reports",
+        "arm": "full_guides",
+        "context_tokens": 6132,
+        "context_bytes": 24290,
+        "context_sha256": "b010e9b42319f60ec5871cba72355a5fa9cec8290358c03c10a9d90951225cb1"
+      },
+      {
+        "task": "walker-traversal-reports",
+        "arm": "mcp_search",
+        "context_tokens": 700,
+        "context_bytes": 2848,
+        "context_sha256": "ba4b9784053bc523055ff1d9542535bea1643701e58ec624ff76e62b22859c1e"
+      },
+      {
+        "task": "walker-traversal-reports",
+        "arm": "flat",
+        "context_tokens": 1786,
+        "context_bytes": 5913,
+        "context_sha256": "0ab0dfbfa51260139fdabc55d433a108bdc875a3a0d91628f606a3720118d452"
+      },
+      {
+        "task": "walker-traversal-reports",
+        "arm": "graph",
+        "context_tokens": 1786,
+        "context_bytes": 5913,
+        "context_sha256": "0ab0dfbfa51260139fdabc55d433a108bdc875a3a0d91628f606a3720118d452"
+      },
+      {
+        "task": "typed-fields-postinit",
+        "arm": "full_guides",
+        "context_tokens": 5308,
+        "context_bytes": 20218,
+        "context_sha256": "1a8e3235a9c7ef101de91da44d6de9ca6bb5a5aadd9c353a534af7080a6a11f6"
+      },
+      {
+        "task": "typed-fields-postinit",
+        "arm": "mcp_search",
+        "context_tokens": 702,
+        "context_bytes": 2890,
+        "context_sha256": "efe055ff6451ee01ea7afa87676f10692793b408ebc55c9104fca7e874991bbb"
+      },
+      {
+        "task": "typed-fields-postinit",
+        "arm": "flat",
+        "context_tokens": 1819,
+        "context_bytes": 5911,
+        "context_sha256": "803ac5fd2d2ca9118f1d00a89d1aa550cd2961685df4f7eef10afaf16d2ee035"
+      },
+      {
+        "task": "typed-fields-postinit",
+        "arm": "graph",
+        "context_tokens": 1819,
+        "context_bytes": 5911,
+        "context_sha256": "803ac5fd2d2ca9118f1d00a89d1aa550cd2961685df4f7eef10afaf16d2ee035"
+      },
+      {
+        "task": "dict-items-typed-lambda",
+        "arm": "full_guides",
+        "context_tokens": 7857,
+        "context_bytes": 29843,
+        "context_sha256": "d3d0359805f6e6ecfde917cbc3fee36ea20b8498b7532e223ccaa22e5e180183"
+      },
+      {
+        "task": "dict-items-typed-lambda",
+        "arm": "mcp_search",
+        "context_tokens": 692,
+        "context_bytes": 2732,
+        "context_sha256": "881a68667e4c14ac014fc43e0a794d69021a52631cae53ed32f846b1ec0aa02d"
+      },
+      {
+        "task": "dict-items-typed-lambda",
+        "arm": "flat",
+        "context_tokens": 1692,
+        "context_bytes": 5886,
+        "context_sha256": "38b7cc24de91502b8d4342994c50c419a1f89ca3665e8ad3bbc216d2aa551e99"
+      },
+      {
+        "task": "dict-items-typed-lambda",
+        "arm": "graph",
+        "context_tokens": 1692,
+        "context_bytes": 5886,
+        "context_sha256": "38b7cc24de91502b8d4342994c50c419a1f89ca3665e8ad3bbc216d2aa551e99"
+      },
+      {
+        "task": "stdlib-import-main-guard",
+        "arm": "full_guides",
+        "context_tokens": 6041,
+        "context_bytes": 23815,
+        "context_sha256": "5d776e26fda683d5c4954174a5d097cf1a773eb316fe647d6940e6c9026d5fc8"
+      },
+      {
+        "task": "stdlib-import-main-guard",
+        "arm": "mcp_search",
+        "context_tokens": 694,
+        "context_bytes": 2774,
+        "context_sha256": "7451e0bc7b7ef6c8c0799adaf264378d3bee5249019d5f45f4f78fa98ae71fc8"
+      },
+      {
+        "task": "stdlib-import-main-guard",
+        "arm": "flat",
+        "context_tokens": 1664,
+        "context_bytes": 5834,
+        "context_sha256": "24f9397c1b748e9e50ae14e9e437d33e685e11495351f86a6e8aeeea95e40a9b"
+      },
+      {
+        "task": "stdlib-import-main-guard",
+        "arm": "graph",
+        "context_tokens": 1664,
+        "context_bytes": 5834,
+        "context_sha256": "24f9397c1b748e9e50ae14e9e437d33e685e11495351f86a6e8aeeea95e40a9b"
+      }
+    ]
+  },
+  "generations": [
+    {
+      "task": "walker-traversal-reports",
+      "arm": "full_guides",
+      "returncode": 0,
+      "seconds": 10.023,
+      "usage": {
+        "input_tokens": 23815,
+        "cached_input_tokens": 0,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 125,
+        "reasoning_output_tokens": 0
+      },
+      "tool_use_detected": false,
+      "model": "gpt-6-astra (CLI default confirmed by separate same-flags probe)",
+      "source_sha256": "9bd931e3e33549ad928fb83f0131cfd033dbf25937badeb8b5d3fab9eaf28a97",
+      "runtime_notices": [],
+      "cli_version": "0.154.0",
+      "manual_constraints": "Source reviewed; prompt requirements met for compiling candidates. Date graph candidate uses equivalent __name__ guard inside entry."
+    },
+    {
+      "task": "walker-traversal-reports",
+      "arm": "mcp_search",
+      "returncode": 0,
+      "seconds": 18.508,
+      "usage": {
+        "input_tokens": 21100,
+        "cached_input_tokens": 0,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 419,
+        "reasoning_output_tokens": 301
+      },
+      "tool_use_detected": false,
+      "model": "gpt-6-astra (CLI default confirmed by separate same-flags probe)",
+      "source_sha256": "65c1a9189c5af48c7fdcd262941de92c8b738cf6034f647b045f848881087964",
+      "runtime_notices": [
+        "Skill descriptions were shortened to fit the skills context budget. Codex can still see every skill, but some descriptions are shorter. Disable unused skills or plugins to leave more room for the rest."
+      ],
+      "cli_version": "0.154.0",
+      "manual_constraints": "Source reviewed; prompt requirements met for compiling candidates. Date graph candidate uses equivalent __name__ guard inside entry."
+    },
+    {
+      "task": "walker-traversal-reports",
+      "arm": "graph",
+      "returncode": 0,
+      "seconds": 10.274,
+      "usage": {
+        "input_tokens": 22184,
+        "cached_input_tokens": 0,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 127,
+        "reasoning_output_tokens": 0
+      },
+      "tool_use_detected": false,
+      "model": "gpt-6-astra (CLI default confirmed by separate same-flags probe)",
+      "source_sha256": "7ef6fde5a902c87c7ccc861140728c6bd8fbaea7a1708abaa887a2b9cc2eecf3",
+      "runtime_notices": [
+        "Skill descriptions were shortened to fit the skills context budget. Codex can still see every skill, but some descriptions are shorter. Disable unused skills or plugins to leave more room for the rest."
+      ],
+      "cli_version": "0.154.0",
+      "manual_constraints": "Source reviewed; prompt requirements met for compiling candidates. Date graph candidate uses equivalent __name__ guard inside entry."
+    },
+    {
+      "task": "typed-fields-postinit",
+      "arm": "full_guides",
+      "returncode": 0,
+      "seconds": 7.717,
+      "usage": {
+        "input_tokens": 23008,
+        "cached_input_tokens": 0,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 88,
+        "reasoning_output_tokens": 0
+      },
+      "tool_use_detected": false,
+      "model": "gpt-6-astra (CLI default confirmed by separate same-flags probe)",
+      "source_sha256": "c8c1294d09d9e86b0d2eb943c1b05652db1ae6f275032ddcdba2de48d21de2af",
+      "runtime_notices": [],
+      "cli_version": "0.154.0",
+      "manual_constraints": "Source reviewed; prompt requirements met for compiling candidates. Date graph candidate uses equivalent __name__ guard inside entry."
+    },
+    {
+      "task": "typed-fields-postinit",
+      "arm": "mcp_search",
+      "returncode": 0,
+      "seconds": 10.816,
+      "usage": {
+        "input_tokens": 18506,
+        "cached_input_tokens": 0,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 232,
+        "reasoning_output_tokens": 140
+      },
+      "tool_use_detected": false,
+      "model": "gpt-6-astra (CLI default confirmed by separate same-flags probe)",
+      "source_sha256": "714d291b1939fbdac0546fc1f692d0455c2129a15c013d239c29f60c9ccf5033",
+      "runtime_notices": [],
+      "cli_version": "0.154.0",
+      "manual_constraints": "Source reviewed; prompt requirements met for compiling candidates. Date graph candidate uses equivalent __name__ guard inside entry."
+    },
+    {
+      "task": "typed-fields-postinit",
+      "arm": "graph",
+      "returncode": 0,
+      "seconds": 7.713,
+      "usage": {
+        "input_tokens": 19483,
+        "cached_input_tokens": 0,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 88,
+        "reasoning_output_tokens": 0
+      },
+      "tool_use_detected": false,
+      "model": "gpt-6-astra (CLI default confirmed by separate same-flags probe)",
+      "source_sha256": "c8c1294d09d9e86b0d2eb943c1b05652db1ae6f275032ddcdba2de48d21de2af",
+      "runtime_notices": [],
+      "cli_version": "0.154.0",
+      "manual_constraints": "Source reviewed; prompt requirements met for compiling candidates. Date graph candidate uses equivalent __name__ guard inside entry."
+    },
+    {
+      "task": "dict-items-typed-lambda",
+      "arm": "full_guides",
+      "returncode": 0,
+      "seconds": 11.349,
+      "usage": {
+        "input_tokens": 25545,
+        "cached_input_tokens": 0,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 207,
+        "reasoning_output_tokens": 64
+      },
+      "tool_use_detected": false,
+      "model": "gpt-6-astra (CLI default confirmed by separate same-flags probe)",
+      "source_sha256": "1e89e06bbe5728560ce3023192a0de27c15d6e801876a0b98fdf5b33423e2bbe",
+      "runtime_notices": [],
+      "cli_version": "0.154.0",
+      "manual_constraints": "Source reviewed; prompt requirements met for compiling candidates. Date graph candidate uses equivalent __name__ guard inside entry."
+    },
+    {
+      "task": "dict-items-typed-lambda",
+      "arm": "mcp_search",
+      "returncode": 0,
+      "seconds": 13.082,
+      "usage": {
+        "input_tokens": 18335,
+        "cached_input_tokens": 0,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 274,
+        "reasoning_output_tokens": 118
+      },
+      "tool_use_detected": false,
+      "model": "gpt-6-astra (CLI default confirmed by separate same-flags probe)",
+      "source_sha256": "e2feb5fd5915e598ad89efa4511497e5fcabbfd39e6d33fe14c063eb73edf5a4",
+      "runtime_notices": [],
+      "cli_version": "0.154.0",
+      "manual_constraints": "Source reviewed; prompt requirements met for compiling candidates. Date graph candidate uses equivalent __name__ guard inside entry."
+    },
+    {
+      "task": "dict-items-typed-lambda",
+      "arm": "graph",
+      "returncode": 0,
+      "seconds": 10.395,
+      "usage": {
+        "input_tokens": 19337,
+        "cached_input_tokens": 15488,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 129,
+        "reasoning_output_tokens": 0
+      },
+      "tool_use_detected": false,
+      "model": "gpt-6-astra (CLI default confirmed by separate same-flags probe)",
+      "source_sha256": "3ba07cbfe9a6381a4269bcf38dc9ca9d28611fb793e1470e6be692fba47c79d4",
+      "runtime_notices": [],
+      "cli_version": "0.154.0",
+      "manual_constraints": "Source reviewed; prompt requirements met for compiling candidates. Date graph candidate uses equivalent __name__ guard inside entry."
+    },
+    {
+      "task": "stdlib-import-main-guard",
+      "arm": "full_guides",
+      "returncode": 0,
+      "seconds": 10.513,
+      "usage": {
+        "input_tokens": 23727,
+        "cached_input_tokens": 0,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 176,
+        "reasoning_output_tokens": 38
+      },
+      "tool_use_detected": false,
+      "model": "gpt-6-astra (CLI default confirmed by separate same-flags probe)",
+      "source_sha256": "24c69453b2d517c7d239e983a9460c867e753ffed65a774dede9b2d514900425",
+      "runtime_notices": [],
+      "cli_version": "0.154.0",
+      "manual_constraints": "Source reviewed; prompt requirements met for compiling candidates. Date graph candidate uses equivalent __name__ guard inside entry."
+    },
+    {
+      "task": "stdlib-import-main-guard",
+      "arm": "mcp_search",
+      "returncode": 0,
+      "seconds": 15.976,
+      "usage": {
+        "input_tokens": 18343,
+        "cached_input_tokens": 0,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 336,
+        "reasoning_output_tokens": 200
+      },
+      "tool_use_detected": false,
+      "model": "gpt-6-astra (CLI default confirmed by separate same-flags probe)",
+      "source_sha256": "cb3b81cc094cb34771f6c60405df2652c022eb18be542e705ad04f3212886385",
+      "runtime_notices": [],
+      "cli_version": "0.154.0",
+      "manual_constraints": "Source reviewed; prompt requirements met for compiling candidates. Date graph candidate uses equivalent __name__ guard inside entry."
+    },
+    {
+      "task": "stdlib-import-main-guard",
+      "arm": "graph",
+      "returncode": 0,
+      "seconds": 13.136,
+      "usage": {
+        "input_tokens": 19315,
+        "cached_input_tokens": 0,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 248,
+        "reasoning_output_tokens": 102
+      },
+      "tool_use_detected": false,
+      "model": "gpt-6-astra (CLI default confirmed by separate same-flags probe)",
+      "source_sha256": "feef07a750996dfa77dea3abd03e208d616f0b21233be4336b4949621451ba47",
+      "runtime_notices": [],
+      "cli_version": "0.154.0",
+      "manual_constraints": "Source reviewed; prompt requirements met for compiling candidates. Date graph candidate uses equivalent __name__ guard inside entry."
+    }
+  ],
+  "behavior": [
+    {
+      "task": "walker-traversal-reports",
+      "arm": "full_guides",
+      "compiler": "jac 0.37.23  (Linux x86_64)",
+      "source_sha256": "9bd931e3e33549ad928fb83f0131cfd033dbf25937badeb8b5d3fab9eaf28a97",
+      "compile_pass": true,
+      "behavior_pass": true,
+      "commands": [
+        {
+          "command": [
+            "jac",
+            "check"
+          ],
+          "returncode": 0,
+          "timed_out": false,
+          "seconds": 0.655,
+          "stdout": "  Checking <trial>/main.jac...\n<trial>/main.jac ok [100%]\n============================== 1 passed in 0.43s ===============================\n",
+          "stderr": ""
+        },
+        {
+          "command": [
+            "jac",
+            "run",
+            "--backend",
+            "python",
+            "--no-cache",
+            "main.jac"
+          ],
+          "returncode": 0,
+          "timed_out": false,
+          "seconds": 0.869,
+          "stdout": "[]\n['leaf', 'side']\n['leaf', 'side']\nJACBRAIN_PASS_WALKER\n",
+          "stderr": ""
+        }
+      ],
+      "manual_constraints": "Source reviewed: requested idioms satisfied."
+    },
+    {
+      "task": "walker-traversal-reports",
+      "arm": "graph",
+      "compiler": "jac 0.37.23  (Linux x86_64)",
+      "source_sha256": "7ef6fde5a902c87c7ccc861140728c6bd8fbaea7a1708abaa887a2b9cc2eecf3",
+      "compile_pass": true,
+      "behavior_pass": true,
+      "commands": [
+        {
+          "command": [
+            "jac",
+            "check"
+          ],
+          "returncode": 0,
+          "timed_out": false,
+          "seconds": 0.571,
+          "stdout": "  Checking <trial>/main.jac...\n<trial>/main.jac ok [100%]\n============================== 1 passed in 0.35s ===============================\n",
+          "stderr": ""
+        },
+        {
+          "command": [
+            "jac",
+            "run",
+            "--backend",
+            "python",
+            "--no-cache",
+            "main.jac"
+          ],
+          "returncode": 0,
+          "timed_out": false,
+          "seconds": 0.81,
+          "stdout": "[]\n['leaf', 'side']\n['leaf', 'side']\nJACBRAIN_PASS_WALKER\n",
+          "stderr": ""
+        }
+      ],
+      "manual_constraints": "Source reviewed: requested idioms satisfied."
+    },
+    {
+      "task": "walker-traversal-reports",
+      "arm": "mcp_search",
+      "compiler": "jac 0.37.23  (Linux x86_64)",
+      "source_sha256": "65c1a9189c5af48c7fdcd262941de92c8b738cf6034f647b045f848881087964",
+      "compile_pass": false,
+      "behavior_pass": false,
+      "commands": [
+        {
+          "command": [
+            "jac",
+            "check"
+          ],
+          "returncode": 1,
+          "timed_out": false,
+          "seconds": 0.535,
+          "stdout": "  Checking <trial>/main.jac...\n<trial>/main.jac FAILED [100%]\n\n=================================== FAILURES ===================================\n____________________ <trial>/main.jac _____________________\n  \u2192 run 'jac guide reference/diagnostics' for guidance\n  \u2192 run 'jac guide reference/diagnostics' for guidance\n  \u2192 run 'jac guide reference/diagnostics' for guidance\n  \u2192 run 'jac guide reference/diagnostics' for guidance\n  \u2192 run 'jac guide jac-types' for guidance\n  \u2192 run 'jac guide jac-types' for guidance\n  \u2192 run 'jac guide jac-types' for guidance\n  \u2192 run 'jac guide jac-types' for guidance\n  \u2192 run 'jac guide jac-types' for guidance\n  \u2192 run 'jac guide jac-types' for guidance\n  \u2192 run 'jac guide jac-types' for guidance\n  \u2192 run 'jac guide jac-types' for guidance\n  \u2192 run 'jac guide jac-types' for guidance\n  \u2192 run 'jac guide jac-types' for guidance\n  \u2192 run 'jac guide jac-types' for guidance\n  \u2192 run 'jac guide jac-types' for guidance\n  \u2192 run 'jac guide jac-types' for guidance\n  \u2192 run 'jac guide jac-types' for guidance\n  \u2192 run 'jac guide jac-types' for guidance\n  \u2192 run 'jac guide jac-types' for guidance\n  \u2192 run 'jac guide jac-types' for guidance\n  \u2192 run 'jac guide jac-types' for guidance\n  \u2192 run 'jac guide jac-types' for guidance\n\n================================= failed files =================================\n<trial>/main.jac - 10 errors, 13 warnings\n============================== 1 failed in 0.31s ===============================\n",
+          "stderr": "\u2716 Error: error[E0002]: Missing ';'\n  --> <trial>/main.jac:5:23\n    3 | }\n    4 | \n    5 | walker CollectEnabled reports list[str] {\n      |                       ^^^^^^^\n    6 |     has names: list[str] = [];\n    7 | \n\u2716 Error: error[E0005]: Unexpected token 'reports'\n  --> <trial>/main.jac:5:23\n    3 | }\n    4 | \n    5 | walker CollectEnabled reports list[str] {\n      |                       ^^^^^^^\n    6 |     has names: list[str] = [];\n    7 | \n\u2716 Error: error[E0030]: Unexpected semicolon at module level\n  --> <trial>/main.jac:6:30\n    4 | \n    5 | walker CollectEnabled reports list[str] {\n    6 |     has names: list[str] = [];\n      |                              ^\n    7 | \n    8 |     can start with Root entry {\n\u2716 Error: error[E0005]: Unexpected token '}'\n  --> <trial>/main.jac:23:1\n   21 |         report sorted(self.names);\n   22 |     }\n   23 | }\n      | ^\n   24 | \n   25 | with entry {\n\u2716 Error: error[E1032]: Type is Unknown, cannot access attribute \"names\"\n  --> <trial>/main.jac:9:14\n    7 | \n    8 |     can start with Root entry {\n    9 |         self.names = [];\n      |              ^^^^^\n   10 |         visit [-->];\n   11 |     }\n\u2716 Error: error[E1032]: Type is Unknown, cannot access attribute \"enabled\"\n  --> <trial>/main.jac:14:17\n   12 | \n   13 |     can collect with Item entry {\n   14 |         if here.enabled {\n      |                 ^^^^^^^\n   15 |             self.names.append(here.name);\n   16 |         }\n\u2716 Error: error[E1032]: Type is Unknown, cannot access attribute \"names\"\n  --> <trial>/main.jac:15:18\n   13 |     can collect with Item entry {\n   14 |         if here.enabled {\n   15 |             self.names.append(here.name);\n      |                  ^^^^^\n   16 |         }\n   17 |         visit [-->];\n\u2716 Error: error[E1032]: Type is Unknown, cannot access attribute \"name\"\n  --> <trial>/main.jac:15:36\n   13 |     can collect with Item entry {\n   14 |         if here.enabled {\n   15 |             self.names.append(here.name);\n      |                                    ^^^^\n   16 |         }\n   17 |         visit [-->];\n\u2716 Error: error[E1032]: Type is Unknown, cannot access attribute \"names\"\n  --> <trial>/main.jac:21:28\n   19 | \n   20 |     can finish with exit {\n   21 |         report sorted(self.names);\n      |                            ^^^^^\n   22 |     }\n   23 | }\n\u2716 Error: error[E1054]: No matching overload found for the function call with the given arguments\n  --> <trial>/main.jac:21:16\n   19 | \n   20 |     can finish with exit {\n   21 |         report sorted(self.names);\n      |                ^^^^^^^^^^^^^^^^^^\n   22 |     }\n   23 | }\nhelp: the argument for parameter 'iterable' has type '<Unknown>', which no overload accepts. The closest match, overload 1, expects 'Iterable[<Unknown>]'.\n\u26a0 warning[W1051]: Expression type could not be resolved (Unknown)\n  --> <trial>/main.jac:9:9\n    7 | \n    8 |     can start with Root entry {\n    9 |         self.names = [];\n      |         ^^^^\n   10 |         visit [-->];\n   11 |     }\nhelp: Often fixed by adding a more specific type annotation to the relevant declaration (e.g., 'list[Task]' instead of bare 'list', or annotating an unannotated parameter or attribute). Can also indicate an unresolved import, a forward reference the checker cannot bind, or fallout from an upstream error.\n\u26a0 warning[W1051]: Expression type could not be resolved (Unknown)\n  --> <trial>/main.jac:9:9\n    7 | \n    8 |     can start with Root entry {\n    9 |         self.names = [];\n      |         ^^^^^^^^^^\n   10 |         visit [-->];\n   11 |     }\nhelp: Often fixed by adding a more specific type annotation to the relevant declaration (e.g., 'list[Task]' instead of bare 'list', or annotating an unannotated parameter or attribute). Can also indicate an unresolved import, a forward reference the checker cannot bind, or fallout from an upstream error.\n\u26a0 warning[W1051]: Expression type could not be resolved (Unknown)\n  --> <trial>/main.jac:14:12\n   12 | \n   13 |     can collect with Item entry {\n   14 |         if here.enabled {\n      |            ^^^^\n   15 |             self.names.append(here.name);\n   16 |         }\nhelp: Often fixed by adding a more specific type annotation to the relevant declaration (e.g., 'list[Task]' instead of bare 'list', or annotating an unannotated parameter or attribute). Can also indicate an unresolved import, a forward reference the checker cannot bind, or fallout from an upstream error.\n\u26a0 warning[W1051]: Expression type could not be resolved (Unknown)\n  --> <trial>/main.jac:14:12\n   12 | \n   13 |     can collect with Item entry {\n   14 |         if here.enabled {\n      |            ^^^^^^^^^^^^\n   15 |             self.names.append(here.name);\n   16 |         }\nhelp: Often fixed by adding a more specific type annotation to the relevant declaration (e.g., 'list[Task]' instead of bare 'list', or annotating an unannotated parameter or attribute). Can also indicate an unresolved import, a forward reference the checker cannot bind, or fallout from an upstream error.\n\u26a0 warning[W1051]: Expression type could not be resolved (Unknown)\n  --> <trial>/main.jac:15:13\n   13 |     can collect with Item entry {\n   14 |         if here.enabled {\n   15 |             self.names.append(here.name);\n      |             ^^^^\n   16 |         }\n   17 |         visit [-->];\nhelp: Often fixed by adding a more specific type annotation to the relevant declaration (e.g., 'list[Task]' instead of bare 'list', or annotating an unannotated parameter or attribute). Can also indicate an unresolved import, a forward reference the checker cannot bind, or fallout from an upstream error.\n\u26a0 warning[W1051]: Expression type could not be resolved (Unknown)\n  --> <trial>/main.jac:15:13\n   13 |     can collect with Item entry {\n   14 |         if here.enabled {\n   15 |             self.names.append(here.name);\n      |             ^^^^^^^^^^\n   16 |         }\n   17 |         visit [-->];\nhelp: Often fixed by adding a more specific type annotation to the relevant declaration (e.g., 'list[Task]' instead of bare 'list', or annotating an unannotated parameter or attribute). Can also indicate an unresolved import, a forward reference the checker cannot bind, or fallout from an upstream error.\n\u26a0 warning[W1051]: Expression type could not be resolved (Unknown)\n  --> <trial>/main.jac:15:13\n   13 |     can collect with Item entry {\n   14 |         if here.enabled {\n   15 |             self.names.append(here.name);\n      |             ^^^^^^^^^^^^^^^^^\n   16 |         }\n   17 |         visit [-->];\nhelp: Often fixed by adding a more specific type annotation to the relevant declaration (e.g., 'list[Task]' instead of bare 'list', or annotating an unannotated parameter or attribute). Can also indicate an unresolved import, a forward reference the checker cannot bind, or fallout from an upstream error.\n\u26a0 warning[W1051]: Expression type could not be resolved (Unknown)\n  --> <trial>/main.jac:15:31\n   13 |     can collect with Item entry {\n   14 |         if here.enabled {\n   15 |             self.names.append(here.name);\n      |                               ^^^^\n   16 |         }\n   17 |         visit [-->];\nhelp: Often fixed by adding a more specific type annotation to the relevant declaration (e.g., 'list[Task]' instead of bare 'list', or annotating an unannotated parameter or attribute). Can also indicate an unresolved import, a forward reference the checker cannot bind, or fallout from an upstream error.\n\u26a0 warning[W1051]: Expression type could not be resolved (Unknown)\n  --> <trial>/main.jac:15:31\n   13 |     can collect with Item entry {\n   14 |         if here.enabled {\n   15 |             self.names.append(here.name);\n      |                               ^^^^^^^^^\n   16 |         }\n   17 |         visit [-->];\nhelp: Often fixed by adding a more specific type annotation to the relevant declaration (e.g., 'list[Task]' instead of bare 'list', or annotating an unannotated parameter or attribute). Can also indicate an unresolved import, a forward reference the checker cannot bind, or fallout from an upstream error.\n\u26a0 warning[W1051]: Expression type could not be resolved (Unknown)\n  --> <trial>/main.jac:15:13\n   13 |     can collect with Item entry {\n   14 |         if here.enabled {\n   15 |             self.names.append(here.name);\n      |             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n   16 |         }\n   17 |         visit [-->];\nhelp: Often fixed by adding a more specific type annotation to the relevant declaration (e.g., 'list[Task]' instead of bare 'list', or annotating an unannotated parameter or attribute). Can also indicate an unresolved import, a forward reference the checker cannot bind, or fallout from an upstream error.\n\u26a0 warning[W1051]: Expression type could not be resolved (Unknown)\n  --> <trial>/main.jac:21:23\n   19 | \n   20 |     can finish with exit {\n   21 |         report sorted(self.names);\n      |                       ^^^^\n   22 |     }\n   23 | }\nhelp: Often fixed by adding a more specific type annotation to the relevant declaration (e.g., 'list[Task]' instead of bare 'list', or annotating an unannotated parameter or attribute). Can also indicate an unresolved import, a forward reference the checker cannot bind, or fallout from an upstream error.\n\u26a0 warning[W1051]: Expression type could not be resolved (Unknown)\n  --> <trial>/main.jac:21:23\n   19 | \n   20 |     can finish with exit {\n   21 |         report sorted(self.names);\n      |                       ^^^^^^^^^^\n   22 |     }\n   23 | }\nhelp: Often fixed by adding a more specific type annotation to the relevant declaration (e.g., 'list[Task]' instead of bare 'list', or annotating an unannotated parameter or attribute). Can also indicate an unresolved import, a forward reference the checker cannot bind, or fallout from an upstream error.\n\u26a0 warning[W1051]: Expression type could not be resolved (Unknown)\n  --> <trial>/main.jac:21:16\n   19 | \n   20 |     can finish with exit {\n   21 |         report sorted(self.names);\n      |                ^^^^^^^^^^^^^^^^^^\n   22 |     }\n   23 | }\nhelp: Often fixed by adding a more specific type annotation to the relevant declaration (e.g., 'list[Task]' instead of bare 'list', or annotating an unannotated parameter or attribute). Can also indicate an unresolved import, a forward reference the checker cannot bind, or fallout from an upstream error.\n"
+        }
+      ],
+      "manual_constraints": "Not scored: compiler rejected candidate."
+    },
+    {
+      "task": "typed-fields-postinit",
+      "arm": "full_guides",
+      "compiler": "jac 0.37.23  (Linux x86_64)",
+      "source_sha256": "c8c1294d09d9e86b0d2eb943c1b05652db1ae6f275032ddcdba2de48d21de2af",
+      "compile_pass": true,
+      "behavior_pass": true,
+      "commands": [
+        {
+          "command": [
+            "jac",
+            "check"
+          ],
+          "returncode": 0,
+          "timed_out": false,
+          "seconds": 0.559,
+          "stdout": "  Checking <trial>/main.jac...\n<trial>/main.jac ok [100%]\n============================== 1 passed in 0.33s ===============================\n",
+          "stderr": ""
+        },
+        {
+          "command": [
+            "jac",
+            "run",
+            "--backend",
+            "python",
+            "--no-cache",
+            "main.jac"
+          ],
+          "returncode": 0,
+          "timed_out": false,
+          "seconds": 0.735,
+          "stdout": "JACBRAIN_PASS_FIELDS\n",
+          "stderr": ""
+        }
+      ],
+      "manual_constraints": "Source reviewed: requested idioms satisfied."
+    },
+    {
+      "task": "typed-fields-postinit",
+      "arm": "graph",
+      "compiler": "jac 0.37.23  (Linux x86_64)",
+      "source_sha256": "c8c1294d09d9e86b0d2eb943c1b05652db1ae6f275032ddcdba2de48d21de2af",
+      "compile_pass": true,
+      "behavior_pass": true,
+      "commands": [
+        {
+          "command": [
+            "jac",
+            "check"
+          ],
+          "returncode": 0,
+          "timed_out": false,
+          "seconds": 0.551,
+          "stdout": "  Checking <trial>/main.jac...\n<trial>/main.jac ok [100%]\n============================== 1 passed in 0.32s ===============================\n",
+          "stderr": ""
+        },
+        {
+          "command": [
+            "jac",
+            "run",
+            "--backend",
+            "python",
+            "--no-cache",
+            "main.jac"
+          ],
+          "returncode": 0,
+          "timed_out": false,
+          "seconds": 0.702,
+          "stdout": "JACBRAIN_PASS_FIELDS\n",
+          "stderr": ""
+        }
+      ],
+      "manual_constraints": "Source reviewed: requested idioms satisfied."
+    },
+    {
+      "task": "typed-fields-postinit",
+      "arm": "mcp_search",
+      "compiler": "jac 0.37.23  (Linux x86_64)",
+      "source_sha256": "714d291b1939fbdac0546fc1f692d0455c2129a15c013d239c29f60c9ccf5033",
+      "compile_pass": false,
+      "behavior_pass": false,
+      "commands": [
+        {
+          "command": [
+            "jac",
+            "check"
+          ],
+          "returncode": 1,
+          "timed_out": false,
+          "seconds": 0.547,
+          "stdout": "  Checking <trial>/main.jac...\n<trial>/main.jac FAILED [100%]\n\n=================================== FAILURES ===================================\n____________________ <trial>/main.jac _____________________\n  \u2192 run 'jac guide reference/diagnostics' for guidance\n  \u2192 run 'jac guide reference/diagnostics' for guidance\n  \u2192 run 'jac guide reference/diagnostics' for guidance\n  \u2192 run 'jac guide reference/diagnostics' for guidance\n  \u2192 run 'jac guide jac-has-fields' for guidance\n  \u2192 run 'jac guide jac-walker-patterns' for guidance\n  \u2192 run 'jac guide jac-walker-patterns' for guidance\n  \u2192 run 'jac guide jac-walker-patterns' for guidance\n  \u2192 run 'jac guide reference/diagnostics' for guidance\n\n================================= failed files =================================\n<trial>/main.jac - 8 errors, 1 warning\n============================== 1 failed in 0.33s ===============================\n",
+          "stderr": "\u2716 Error: error[E0002]: Missing ';'\n  --> <trial>/main.jac:6:23\n    4 |     has quantity: int = 1;\n    5 |     has tags: list[str] = [];\n    6 |     has subtotal: int by postinit;\n      |                       ^^\n    7 | \n    8 |     can postinit() {\n\u2716 Error: error[E0046]: Unexpected token in archetype body\n  --> <trial>/main.jac:6:23\n    4 |     has quantity: int = 1;\n    5 |     has tags: list[str] = [];\n    6 |     has subtotal: int by postinit;\n      |                       ^^\n    7 | \n    8 |     can postinit() {\n\u2716 Error: error[E0046]: Unexpected token in archetype body\n  --> <trial>/main.jac:6:26\n    4 |     has quantity: int = 1;\n    5 |     has tags: list[str] = [];\n    6 |     has subtotal: int by postinit;\n      |                          ^^^^^^^^\n    7 | \n    8 |     can postinit() {\n\u2716 Error: error[E0034]: Expected 'with' after 'can' ability name (use 'def' for function-style declarations)\n  --> <trial>/main.jac:8:17\n    6 |     has subtotal: int by postinit;\n    7 | \n    8 |     can postinit() {\n      |                 ^\n    9 |         self.subtotal = self.unit_price * self.quantity;\n   10 |     }\n\u2716 Error: error[E2004]: Non default attribute 'subtotal' follows default attribute\n  --> <trial>/main.jac:6:9\n    4 |     has quantity: int = 1;\n    5 |     has tags: list[str] = [];\n    6 |     has subtotal: int by postinit;\n      |         ^^^^^^^^\n    7 | \n    8 |     can postinit() {\n\u2716 Error: error[E1050]: Not all required parameters were provided in the function call: 'subtotal'\n  --> <trial>/main.jac:14:13\n   12 | \n   13 | with entry {\n   14 |     first = InvoiceLine(sku=\"A\", unit_price=7);\n      |             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n   15 |     second = InvoiceLine(sku=\"B\", unit_price=5, quantity=3, tags=[\"bulk\"]);\n   16 |     third = InvoiceLine(sku=\"C\", unit_price=11, quantity=0);\n\u2716 Error: error[E1050]: Not all required parameters were provided in the function call: 'subtotal'\n  --> <trial>/main.jac:15:14\n   13 | with entry {\n   14 |     first = InvoiceLine(sku=\"A\", unit_price=7);\n   15 |     second = InvoiceLine(sku=\"B\", unit_price=5, quantity=3, tags=[\"bulk\"]);\n      |              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n   16 |     third = InvoiceLine(sku=\"C\", unit_price=11, quantity=0);\n   17 |     assert first.sku == \"A\" and first.unit_price == 7;\n\u2716 Error: error[E1050]: Not all required parameters were provided in the function call: 'subtotal'\n  --> <trial>/main.jac:16:13\n   14 |     first = InvoiceLine(sku=\"A\", unit_price=7);\n   15 |     second = InvoiceLine(sku=\"B\", unit_price=5, quantity=3, tags=[\"bulk\"]);\n   16 |     third = InvoiceLine(sku=\"C\", unit_price=11, quantity=0);\n      |             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n   17 |     assert first.sku == \"A\" and first.unit_price == 7;\n   18 |     assert first.quantity == 1 and first.subtotal == 7;\n\u26a0 warning[W3005]: Empty parentheses can be removed [remove-empty-parens]\n  --> <trial>/main.jac:8:5\n    6 |     has subtotal: int by postinit;\n    7 | \n    8 |     can postinit() {\n      |     ^^^^^^^^^^^^^^^^\n    9 |         self.subtotal = self.unit_price * self.quantity;\n   10 |     }\n"
+        }
+      ],
+      "manual_constraints": "Not scored: compiler rejected candidate."
+    },
+    {
+      "task": "dict-items-typed-lambda",
+      "arm": "full_guides",
+      "compiler": "jac 0.37.23  (Linux x86_64)",
+      "source_sha256": "1e89e06bbe5728560ce3023192a0de27c15d6e801876a0b98fdf5b33423e2bbe",
+      "compile_pass": true,
+      "behavior_pass": true,
+      "commands": [
+        {
+          "command": [
+            "jac",
+            "check"
+          ],
+          "returncode": 0,
+          "timed_out": false,
+          "seconds": 0.586,
+          "stdout": "  Checking <trial>/main.jac...\n<trial>/main.jac ok [100%]\n============================== 1 passed in 0.36s ===============================\n",
+          "stderr": ""
+        },
+        {
+          "command": [
+            "jac",
+            "run",
+            "--backend",
+            "python",
+            "--no-cache",
+            "main.jac"
+          ],
+          "returncode": 0,
+          "timed_out": false,
+          "seconds": 0.855,
+          "stdout": "JACBRAIN_PASS_LAMBDA\n",
+          "stderr": ""
+        }
+      ],
+      "manual_constraints": "Source reviewed: requested idioms satisfied."
+    },
+    {
+      "task": "dict-items-typed-lambda",
+      "arm": "graph",
+      "compiler": "jac 0.37.23  (Linux x86_64)",
+      "source_sha256": "3ba07cbfe9a6381a4269bcf38dc9ca9d28611fb793e1470e6be692fba47c79d4",
+      "compile_pass": true,
+      "behavior_pass": true,
+      "commands": [
+        {
+          "command": [
+            "jac",
+            "check"
+          ],
+          "returncode": 0,
+          "timed_out": false,
+          "seconds": 0.635,
+          "stdout": "  Checking <trial>/main.jac...\n<trial>/main.jac ok [100%]\n============================== 1 passed in 0.39s ===============================\n",
+          "stderr": ""
+        },
+        {
+          "command": [
+            "jac",
+            "run",
+            "--backend",
+            "python",
+            "--no-cache",
+            "main.jac"
+          ],
+          "returncode": 0,
+          "timed_out": false,
+          "seconds": 0.732,
+          "stdout": "JACBRAIN_PASS_LAMBDA\n",
+          "stderr": ""
+        }
+      ],
+      "manual_constraints": "Source reviewed: requested idioms satisfied."
+    },
+    {
+      "task": "dict-items-typed-lambda",
+      "arm": "mcp_search",
+      "compiler": "jac 0.37.23  (Linux x86_64)",
+      "source_sha256": "e2feb5fd5915e598ad89efa4511497e5fcabbfd39e6d33fe14c063eb73edf5a4",
+      "compile_pass": false,
+      "behavior_pass": false,
+      "commands": [
+        {
+          "command": [
+            "jac",
+            "check"
+          ],
+          "returncode": 1,
+          "timed_out": false,
+          "seconds": 0.543,
+          "stdout": "  Checking <trial>/main.jac...\n<trial>/main.jac FAILED [100%]\n\n=================================== FAILURES ===================================\n____________________ <trial>/main.jac _____________________\n  \u2192 run 'jac guide reference/diagnostics' for guidance\n  \u2192 run 'jac guide reference/diagnostics' for guidance\n  \u2192 run 'jac guide reference/diagnostics' for guidance\n  \u2192 run 'jac guide reference/diagnostics' for guidance\n  \u2192 run 'jac guide reference/diagnostics' for guidance\n  \u2192 run 'jac guide reference/diagnostics' for guidance\n  \u2192 run 'jac guide jac-types' for guidance\n  \u2192 run 'jac guide jac-types' for guidance\n  \u2192 run 'jac guide jac-types' for guidance\n  \u2192 run 'jac guide jac-types' for guidance\n  \u2192 run 'jac guide jac-types' for guidance\n  \u2192 run 'jac guide jac-types' for guidance\n  \u2192 run 'jac guide jac-types' for guidance\n  \u2192 run 'jac guide jac-types' for guidance\n  \u2192 run 'jac guide jac-types' for guidance\n  \u2192 run 'jac guide reference/diagnostics' for guidance\n  \u2192 run 'jac guide reference/diagnostics' for guidance\n\n================================= failed files =================================\n<trial>/main.jac - 8 errors, 9 warnings\n============================== 1 failed in 0.32s ===============================\n",
+          "stderr": "\u2716 Error: error[E0022]: Expected '{' after lambda parameters\n  --> <trial>/main.jac:8:42\n    6 |         }\n    7 |     }\n    8 |     ranked = sorted(eligible, key=lambda entry: tuple[str, int] -> tuple[int, str]: (-entry[1], entry[0]));\n      |                                          ^^^^^\n    9 |     names: list[str] = [];\n   10 |     for (name, score) in ranked {\nhelp: Lambda bodies are braced; a single expression statement is the implicit return, e.g. 'lambda (x: int) { x + 1; }'.\n\u2716 Error: error[E0013]: 'entry' is a keyword and cannot be used as a variable name\n  --> <trial>/main.jac:8:42\n    6 |         }\n    7 |     }\n    8 |     ranked = sorted(eligible, key=lambda entry: tuple[str, int] -> tuple[int, str]: (-entry[1], entry[0]));\n      |                                          ^^^^^\n    9 |     names: list[str] = [];\n   10 |     for (name, score) in ranked {\nhelp: Choose another name, or keep this one with the backtick escape: a prefix, not a pair, so one backtick immediately before the word and nothing after it, as in `match or `exit. After a dot no escape is needed (sys.exit, re.match). The reserved words are listed in the language reference under Foundation > Keywords.\n\u2716 Error: error[E0002]: Missing ','\n  --> <trial>/main.jac:8:47\n    6 |         }\n    7 |     }\n    8 |     ranked = sorted(eligible, key=lambda entry: tuple[str, int] -> tuple[int, str]: (-entry[1], entry[0]));\n      |                                               ^\n    9 |     names: list[str] = [];\n   10 |     for (name, score) in ranked {\n\u2716 Error: error[E0006]: Unexpected token\n  --> <trial>/main.jac:8:47\n    6 |         }\n    7 |     }\n    8 |     ranked = sorted(eligible, key=lambda entry: tuple[str, int] -> tuple[int, str]: (-entry[1], entry[0]));\n      |                                               ^\n    9 |     names: list[str] = [];\n   10 |     for (name, score) in ranked {\n\u2716 Error: error[E0002]: Missing ';'\n  --> <trial>/main.jac:8:106\n    6 |         }\n    7 |     }\n    8 |     ranked = sorted(eligible, key=lambda entry: tuple[str, int] -> tuple[int, str]: (-entry[1], entry[0]));\n      |                                                                                                          ^\n    9 |     names: list[str] = [];\n   10 |     for (name, score) in ranked {\n\u2716 Error: error[E0004]: Unexpected token in expression: ')'\n  --> <trial>/main.jac:8:106\n    6 |         }\n    7 |     }\n    8 |     ranked = sorted(eligible, key=lambda entry: tuple[str, int] -> tuple[int, str]: (-entry[1], entry[0]));\n      |                                                                                                          ^\n    9 |     names: list[str] = [];\n   10 |     for (name, score) in ranked {\n\u2716 Error: error[E1054]: No matching overload found for the function call with the given arguments\n  --> <trial>/main.jac:8:14\n    6 |         }\n    7 |     }\n    8 |     ranked = sorted(eligible, key=lambda entry: tuple[str, int] -> tuple[int, str]: (-entry[1], entry[0]));\n      |              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n    9 |     names: list[str] = [];\n   10 |     for (name, score) in ranked {\nhelp: the argument for parameter 'key' has type '<function <lambda>() -> <Unknown>>', which no overload accepts. The candidates expect:\n  overload 1: 'NoneType'\n  overload 2: 'Callable[[tuple[str, int]], SupportsDunderLT[Any] | SupportsDunderGT[Any]]'\n\u2716 Error: error[E1053]: Cannot assign <Unknown> to parameter 'object' of type str\n  --> <trial>/main.jac:11:22\n    9 |     names: list[str] = [];\n   10 |     for (name, score) in ranked {\n   11 |         names.append(name);\n      |                      ^^^^\n   12 |     }\n   13 |     return names;\n\u26a0 warning[W1051]: Expression type could not be resolved (Unknown)\n  --> <trial>/main.jac:8:42\n    6 |         }\n    7 |     }\n    8 |     ranked = sorted(eligible, key=lambda entry: tuple[str, int] -> tuple[int, str]: (-entry[1], entry[0]));\n      |                                          ^^^^^\n    9 |     names: list[str] = [];\n   10 |     for (name, score) in ranked {\nhelp: Often fixed by adding a more specific type annotation to the relevant declaration (e.g., 'list[Task]' instead of bare 'list', or annotating an unannotated parameter or attribute). Can also indicate an unresolved import, a forward reference the checker cannot bind, or fallout from an upstream error.\n\u26a0 warning[W1051]: Expression type could not be resolved (Unknown)\n  --> <trial>/main.jac:8:14\n    6 |         }\n    7 |     }\n    8 |     ranked = sorted(eligible, key=lambda entry: tuple[str, int] -> tuple[int, str]: (-entry[1], entry[0]));\n      |              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n    9 |     names: list[str] = [];\n   10 |     for (name, score) in ranked {\nhelp: Often fixed by adding a more specific type annotation to the relevant declaration (e.g., 'list[Task]' instead of bare 'list', or annotating an unannotated parameter or attribute). Can also indicate an unresolved import, a forward reference the checker cannot bind, or fallout from an upstream error.\n\u26a0 warning[W1051]: Expression type could not be resolved (Unknown)\n  --> <trial>/main.jac:8:106\n    6 |         }\n    7 |     }\n    8 |     ranked = sorted(eligible, key=lambda entry: tuple[str, int] -> tuple[int, str]: (-entry[1], entry[0]));\n      |                                                                                                          ^\n    9 |     names: list[str] = [];\n   10 |     for (name, score) in ranked {\nhelp: Often fixed by adding a more specific type annotation to the relevant declaration (e.g., 'list[Task]' instead of bare 'list', or annotating an unannotated parameter or attribute). Can also indicate an unresolved import, a forward reference the checker cannot bind, or fallout from an upstream error.\n\u26a0 warning[W1051]: Expression type could not be resolved (Unknown)\n  --> <trial>/main.jac:10:26\n    8 |     ranked = sorted(eligible, key=lambda entry: tuple[str, int] -> tuple[int, str]: (-entry[1], entry[0]));\n    9 |     names: list[str] = [];\n   10 |     for (name, score) in ranked {\n      |                          ^^^^^^\n   11 |         names.append(name);\n   12 |     }\nhelp: Often fixed by adding a more specific type annotation to the relevant declaration (e.g., 'list[Task]' instead of bare 'list', or annotating an unannotated parameter or attribute). Can also indicate an unresolved import, a forward reference the checker cannot bind, or fallout from an upstream error.\n\u26a0 warning[W1051]: Expression type could not be resolved (Unknown)\n  --> <trial>/main.jac:11:22\n    9 |     names: list[str] = [];\n   10 |     for (name, score) in ranked {\n   11 |         names.append(name);\n      |                      ^^^^\n   12 |     }\n   13 |     return names;\nhelp: Often fixed by adding a more specific type annotation to the relevant declaration (e.g., 'list[Task]' instead of bare 'list', or annotating an unannotated parameter or attribute). Can also indicate an unresolved import, a forward reference the checker cannot bind, or fallout from an upstream error.\n\u26a0 warning[W1051]: Expression type could not be resolved (Unknown)\n  --> <trial>/main.jac:10:10\n    8 |     ranked = sorted(eligible, key=lambda entry: tuple[str, int] -> tuple[int, str]: (-entry[1], entry[0]));\n    9 |     names: list[str] = [];\n   10 |     for (name, score) in ranked {\n      |          ^^^^\n   11 |         names.append(name);\n   12 |     }\nhelp: Often fixed by adding a more specific type annotation to the relevant declaration (e.g., 'list[Task]' instead of bare 'list', or annotating an unannotated parameter or attribute). Can also indicate an unresolved import, a forward reference the checker cannot bind, or fallout from an upstream error.\n\u26a0 warning[W1051]: Expression type could not be resolved (Unknown)\n  --> <trial>/main.jac:10:16\n    8 |     ranked = sorted(eligible, key=lambda entry: tuple[str, int] -> tuple[int, str]: (-entry[1], entry[0]));\n    9 |     names: list[str] = [];\n   10 |     for (name, score) in ranked {\n      |                ^^^^^\n   11 |         names.append(name);\n   12 |     }\nhelp: Often fixed by adding a more specific type annotation to the relevant declaration (e.g., 'list[Task]' instead of bare 'list', or annotating an unannotated parameter or attribute). Can also indicate an unresolved import, a forward reference the checker cannot bind, or fallout from an upstream error.\n\u26a0 warning[W2001]: Name 'entry' may be undefined\n  --> <trial>/main.jac:8:42\n    6 |         }\n    7 |     }\n    8 |     ranked = sorted(eligible, key=lambda entry: tuple[str, int] -> tuple[int, str]: (-entry[1], entry[0]));\n      |                                          ^^^^^\n    9 |     names: list[str] = [];\n   10 |     for (name, score) in ranked {\n\u26a0 warning[W2001]: Name ')' may be undefined\n  --> <trial>/main.jac:8:106\n    6 |         }\n    7 |     }\n    8 |     ranked = sorted(eligible, key=lambda entry: tuple[str, int] -> tuple[int, str]: (-entry[1], entry[0]));\n      |                                                                                                          ^\n    9 |     names: list[str] = [];\n   10 |     for (name, score) in ranked {\n"
+        }
+      ],
+      "manual_constraints": "Not scored: compiler rejected candidate."
+    },
+    {
+      "task": "stdlib-import-main-guard",
+      "arm": "full_guides",
+      "compiler": "jac 0.37.23  (Linux x86_64)",
+      "source_sha256": "24c69453b2d517c7d239e983a9460c867e753ffed65a774dede9b2d514900425",
+      "compile_pass": true,
+      "behavior_pass": true,
+      "commands": [
+        {
+          "command": [
+            "jac",
+            "check"
+          ],
+          "returncode": 0,
+          "timed_out": false,
+          "seconds": 0.545,
+          "stdout": "  Checking <trial>/main.jac...\n<trial>/main.jac ok [100%]\n============================== 1 passed in 0.33s ===============================\n",
+          "stderr": ""
+        },
+        {
+          "command": [
+            "jac",
+            "run",
+            "--backend",
+            "python",
+            "--no-cache",
+            "main.jac"
+          ],
+          "returncode": 0,
+          "timed_out": false,
+          "seconds": 0.706,
+          "stdout": "JACBRAIN_PASS_IMPORTS\n",
+          "stderr": ""
+        },
+        {
+          "command": [
+            "jac",
+            "run",
+            "--backend",
+            "python",
+            "--no-cache",
+            "date_math.jac"
+          ],
+          "returncode": 0,
+          "timed_out": false,
+          "seconds": 0.673,
+          "stdout": "date helper ready\n",
+          "stderr": ""
+        }
+      ],
+      "manual_constraints": "Source reviewed: requested idioms satisfied."
+    },
+    {
+      "task": "stdlib-import-main-guard",
+      "arm": "graph",
+      "compiler": "jac 0.37.23  (Linux x86_64)",
+      "source_sha256": "feef07a750996dfa77dea3abd03e208d616f0b21233be4336b4949621451ba47",
+      "compile_pass": true,
+      "behavior_pass": true,
+      "commands": [
+        {
+          "command": [
+            "jac",
+            "check"
+          ],
+          "returncode": 0,
+          "timed_out": false,
+          "seconds": 0.547,
+          "stdout": "  Checking <trial>/main.jac...\n<trial>/main.jac ok [100%]\n============================== 1 passed in 0.33s ===============================\n",
+          "stderr": ""
+        },
+        {
+          "command": [
+            "jac",
+            "run",
+            "--backend",
+            "python",
+            "--no-cache",
+            "main.jac"
+          ],
+          "returncode": 0,
+          "timed_out": false,
+          "seconds": 0.687,
+          "stdout": "JACBRAIN_PASS_IMPORTS\n",
+          "stderr": ""
+        },
+        {
+          "command": [
+            "jac",
+            "run",
+            "--backend",
+            "python",
+            "--no-cache",
+            "date_math.jac"
+          ],
+          "returncode": 0,
+          "timed_out": false,
+          "seconds": 0.674,
+          "stdout": "date helper ready\n",
+          "stderr": ""
+        }
+      ],
+      "manual_constraints": "Reviewed: explicit __name__ guard inside with entry; equivalent behavior, not named entry syntax."
+    },
+    {
+      "task": "stdlib-import-main-guard",
+      "arm": "mcp_search",
+      "compiler": "jac 0.37.23  (Linux x86_64)",
+      "source_sha256": "cb3b81cc094cb34771f6c60405df2652c022eb18be542e705ad04f3212886385",
+      "compile_pass": false,
+      "behavior_pass": false,
+      "commands": [
+        {
+          "command": [
+            "jac",
+            "check"
+          ],
+          "returncode": 1,
+          "timed_out": false,
+          "seconds": 0.502,
+          "stdout": "  Checking <trial>/main.jac...\n<trial>/main.jac FAILED [100%]\n\n=================================== FAILURES ===================================\n____________________ <trial>/main.jac _____________________\n\n================================= failed files =================================\n<trial>/main.jac - 1 error, 0 warnings\n============================== 1 failed in 0.29s ===============================\n",
+          "stderr": "\u2716 Error: Error checking '<trial>/main.jac': list index out of range\n"
+        }
+      ],
+      "manual_constraints": "Not scored: compiler rejected candidate."
+    }
+  ],
+  "limitations": [
+    "One generation per task and arm; no repair attempts or repetitions.",
+    "No graph-specific effect: flat and graph context packets identical.",
+    "MCP baseline is a single search_docs response with no get_resource followup.",
+    "CLI hidden instructions and dynamic skill context contribute overhead.",
+    "Default model confirmed in separate CLI probe, not per-trial JSON.",
+    "o200k_base context counts are not billing counts."
+  ]
+}

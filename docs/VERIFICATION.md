@@ -21,7 +21,9 @@ that later changes passed.
 
 ## Known limits
 
-No tokenizer benchmark, compiler-resolved project ingestion, real-project repair
+A four-task tokenizer and coding pilot is recorded in the
+[experiment report](../benchmarks/results/2026-09-29/README.md).
+No compiler-resolved project ingestion, real-project repair
 replay, multi-user service, hostile-code sandbox, or Jac/SQLite persistence
 bridge is verified. Four Jac warnings remain around edge predicates/typing and
 an empty-parenthesis style hint. Their tested graph behavior passes; warning-free

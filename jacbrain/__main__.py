@@ -13,6 +13,11 @@ from .validation import validate_record
 
 
 def main() -> int:
+    # MCP uses UTF-8; Windows redirected streams otherwise commonly use cp1252.
+    # Configure input too so non-ASCII task queries round-trip through stdio.
+    for stream in (sys.stdin, sys.stdout, sys.stderr):
+        if hasattr(stream, 'reconfigure'):
+            stream.reconfigure(encoding='utf-8')
     parser = argparse.ArgumentParser(description='Versioned Jac engineering memory')
     parser.add_argument('--db', default='.jacbrain/brain.sqlite3')
     parser.add_argument('--jac-command', default=os.environ.get('JACBRAIN_JAC_COMMAND', '["jac"]'),
@@ -25,10 +30,14 @@ def main() -> int:
         if name == 'context':
             sub.add_argument('task')
             sub.add_argument('--max-bytes', type=int, default=6000)
+            sub.add_argument('--project-only', action='store_true', help='Exclude shared installed Jac guides')
+            sub.add_argument('--flat', action='store_true', help='Disable graph expansion for comparisons')
         else:
             sub.add_argument('path', type=Path)
             if name == 'remember':
                 sub.add_argument('--kind', choices=sorted(KINDS), required=True)
+    sync = commands.add_parser('sync-guides', help='Import versioned reference guides from installed Jac MCP')
+    sync.add_argument('--uri', action='append', help='Import only these guide URIs (repeatable); default all guides')
     check = commands.add_parser('validate')
     check.add_argument('identity')
     link = commands.add_parser('link')
@@ -48,7 +57,10 @@ def main() -> int:
         if args.action == 'mcp':
             serve(store, sys.stdin, sys.stdout, command)
             return 0
-        if args.action == 'ingest':
+        if args.action == 'sync-guides':
+            from .corpus import sync_guides
+            result = sync_guides(store, command, uris=args.uri)
+        elif args.action == 'ingest':
             result = {'ids': ingest_file(store, args.path, args.project, args.jac_version)}
         elif args.action == 'remember':
             if not args.path.is_file() or args.path.stat().st_size > 100_000:
@@ -56,7 +68,8 @@ def main() -> int:
             result = {'id': store.add(kind=args.kind, content=args.path.read_text(encoding='utf-8'),
                                      source_uri=args.path.resolve().as_uri(), project=args.project, jac_version=args.jac_version)}
         elif args.action == 'context':
-            result = context(store, args.task, args.project, args.jac_version, args.max_bytes)
+            result = context(store, args.task, args.project, args.jac_version, args.max_bytes,
+                             include_guides=not args.project_only, expand_graph=not args.flat)
         elif args.action == 'link':
             store.link(args.source, args.target, args.relation)
             result = {'linked': True}

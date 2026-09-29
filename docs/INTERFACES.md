@@ -11,6 +11,8 @@ the trusted compiler executable and optional launcher arguments. Defaults to
   Concept, Diagnostic, Fix, Pattern, Task or other evidence. All start as candidates.
 * `link SOURCE RELATION TARGET`: scoped, idempotent graph relation.
 * `context TASK --project ID --jac-version VERSION --max-bytes 6000`: compact JSON.
+* `sync-guides [--uri jac://guide/NAME]`: import installed versioned guides;
+  omit URI for a complete atomic refresh. Repeat URI for a partial refresh.
 * `validate ID`: run official Jac MCP against stored candidate source.
 * `mcp`: JSON-RPC 2.0 / MCP 2024-11-05 over newline-delimited stdio.
 
@@ -30,10 +32,16 @@ excerpt with character offsets and `is_excerpt: true`. The hash/status still
 describe the complete stored source. Metadata alone may exceed a tiny budget,
 in which case the item is omitted and `truncated` is true.
 
-Exact project and compiler version are required. No implicit fallback to older
+The requested project plus the shared `@jac-docs` corpus are included at the
+exact compiler version. CLI `--project-only` or MCP `include_guides: false`
+excludes the shared corpus. CLI `--flat` or MCP `expand_graph: false` disables
+one-hop expansion. These MCP flags belong to the `context` tool; guide sync is
+a separate CLI operation. No implicit fallback to older
 evidence. Related records may be included even if they have no lexical match.
 Version labels on ingested docs are caller-provided provenance, not proof that
-the documentation is correct for that version.
+the documentation is correct for that version. `sync-guides` observes the
+installed version before and after import and stores resource/section hashes;
+imported documentation remains candidate evidence, not compiled code.
 
 ## Validation
 
