@@ -1,131 +1,109 @@
+<div align="center">
+
 # JacBrain
 
-**Give a coding agent the Jac context it needs, with evidence it can check.**
+### A project memory for AI agents building with Jac.
+
+Keep useful knowledge. Find what matters. Check it with the compiler.
 
 [![Checks](https://github.com/CosmonautJones/jacbrain/actions/workflows/check.yml/badge.svg)](https://github.com/CosmonautJones/jacbrain/actions/workflows/check.yml)
+[![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
 
-JacBrain is an early, local-first engineering knowledge graph for Jac. It links
-language notes, project symbols, compiler diagnostics, candidate fixes, patterns
-and task history. An agent asks for context; JacBrain returns a bounded packet
-with provenance and version scope. The actual Jac compiler decides whether a
-snippet compiles.
+[Try it](#try-it) · [How it works](#how-it-works) · [Roadmap](docs/ROADMAP.md)
 
-**Status: working foundation, not a finished autonomous learning system.**
-The Python reference service and Jac-native graph scaffold are separately
-executable. Their persistent integration, project-wide repair verification and
-token-efficiency benchmark are still milestones.
+</div>
 
-## Why it exists
+---
 
-Repeatedly pasting language manuals and rediscovering the same compiler errors
-is wasteful. Jac already supplies excellent MCP tools and `jac code slice`.
-JacBrain explores the missing continuity: which evidence applies to this
-project/version, which candidate actually compiled, and what should be carried
-into the next task?
+## The idea
 
-"Learning" means accumulating attributable evidence across sessions. It does
-not mean changing model weights. "Bounded" does not mean provably minimal.
-No token-savings or first-of-its-kind claim is made. See [prior art](docs/PRIOR-ART.md).
+An AI coding agent often has to look up the same language rules and work through
+the same errors across sessions. **JacBrain gives it a place to keep and find
+that knowledge.**
 
-## Try it in two minutes
+It connects notes, code, compiler errors, and candidate fixes in a knowledge
+graph: a collection of records linked by how they relate. When an agent starts
+a task, JacBrain returns a small selection of relevant records for that project
+and Jac version.
 
-Python 3.11+ runs the reference service with **no runtime dependencies**.
-Run these commands from the repository root in PowerShell, Bash or a terminal:
+The goal is less repeated explanation and more useful context. Token savings
+are a goal we still need to measure.
 
-```text
+## How it works
+
+```mermaid
+flowchart LR
+    A[Save notes and code] --> B[Find context for a task]
+    B --> C[Agent proposes code]
+    C --> D[Jac compiler checks it]
+    D --> E[Keep the result]
+    E --> B
+```
+
+For example, an agent working on an **offer-search walker** can ask for related
+notes and code. JacBrain returns matching records with their sources. The agent
+can then submit a candidate snippet to the real Jac compiler and keep the result
+for later retrieval.
+
+**A compiler pass means the snippet compiles.** Tests are still needed to show
+that it behaves correctly.
+
+## Try it
+
+You need **Python 3.11+**. This first example needs no Jac installation, API key,
+or extra Python packages. These commands work in PowerShell or Bash:
+
+```sh
+git clone https://github.com/CosmonautJones/jacbrain.git
+cd jacbrain
+
+# Save a sample note and code file
 python -m jacbrain ingest examples/walker-note.md --project demo
 python -m jacbrain ingest examples/walker-pattern.jac --project demo
-python -m jacbrain context "walker Offer traversal" --project demo --max-bytes 6000
-python -m unittest discover -s tests -v
+
+# Ask for relevant context
+python -m jacbrain context "walker Offer traversal" --project demo
 ```
 
-The default database is `.jacbrain/brain.sqlite3`, ignored by Git. Nothing is
-uploaded. Ingest only explicitly chosen, nonsecret files. To install the CLI,
-run `python -m pip install -e .` and use `jacbrain` in place of `python -m jacbrain`.
+You’ll get JSON containing matching records, their sources, and validation
+status. Data stays in `.jacbrain/brain.sqlite3` on your machine. Choose only
+nonsecret files to ingest.
 
-## Complete the compiler loop
+**Next:** [connect a coding agent and enable compiler checks →](docs/GETTING-STARTED.md)
 
-Install the official [Jac 0.37.23 release](https://github.com/jaseci-labs/jac/releases/tag/v0.37.23)
-for Linux or macOS, then confirm `jac --version` and `jac mcp --inspect`.
-On Windows, run Jac inside WSL. Do not assume a matching PyPI release or native
-Windows binary exists.
+## Where it stands
 
-PowerShell, with Jac available on the WSL PATH:
+**Early working foundation.** You can use the local tools today; the complete
+learning loop is still being built.
 
-```powershell
-$env:JACBRAIN_JAC_COMMAND = '["wsl","-d","Ubuntu","--","jac"]'
-$candidate = python -m jacbrain remember examples/walker-pattern.jac --kind Pattern --project demo | ConvertFrom-Json
-python -m jacbrain validate $candidate.id
-$env:JACBRAIN_LIVE_JAC = '1'
-python -m unittest discover -s tests -v
-```
+| Working today | Still to build |
+| :--- | :--- |
+| Save notes, code, and linked evidence locally | Extract project relationships with Jac’s compiler |
+| Retrieve context by task, project, and Jac version | Connect the native Jac graph to persistent storage |
+| Check snippets through Jac MCP and save the results | Verify fixes against full projects and behavioral tests |
+| Use the CLI, MCP interface, and separate Jac graph demo | Measure whether it saves tokens and improves results |
 
-On Linux/macOS, `jac` is used directly. If WSL cannot find it, replace the last
-array item with the absolute path returned by `wsl -d Ubuntu -- which jac`.
-Do not put a shell command string into the array.
+The persistent service currently uses Python and SQLite. The Jac nodes, edges,
+and walkers form a separate runnable graph model. “Learning” here means keeping
+evidence across sessions, not training an AI model.
 
-A successful receipt changes the candidate to `compiler_validated`. This proves
-only **isolated snippet compilation**, not project imports, tests, or behavior.
-Jac MCP compiles a temporary file; its `filename` argument does not recreate
-the project. Rejected source stays a candidate and records diagnostic evidence.
+## Explore further
 
-## Connect a coding agent
+| I want to… | Start here |
+| :--- | :--- |
+| Connect my agent or check code | [Setup guide](docs/GETTING-STARTED.md) |
+| Understand the design | [Architecture](docs/ARCHITECTURE.md) |
+| Run the native Jac graph | [Graph demo](graph/README.md) |
+| See the API and data format | [Interfaces](docs/INTERFACES.md) · [Schema](schemas/evidence.schema.json) |
+| See what was tested | [Verification](docs/VERIFICATION.md) |
+| Contribute or troubleshoot | [Development guide](CONTRIBUTING.md) |
 
-Example MCP configuration (replace paths for your machine):
+Jac already provides MCP tools and code-context queries. JacBrain builds on that
+work and explores memory across tasks. Our [prior-art review](docs/PRIOR-ART.md)
+covers related projects and the questions we still need to test.
 
-```json
-{
-  "mcpServers": {
-    "jacbrain": {
-      "command": "/absolute/path/to/python",
-      "args": ["-m", "jacbrain", "--db", "/absolute/path/to/brain.sqlite3", "mcp"]
-    },
-    "jac": {"command": "jac", "args": ["mcp"]}
-  }
-}
-```
+---
 
-Install JacBrain into that Python environment first. On Windows use the Python
-executable path and set `JACBRAIN_JAC_COMMAND` in the client's environment.
-JacBrain exposes three tools: `context`, `ingest`, and `validate`. Treat returned
-content as untrusted evidence. The official Jac MCP remains the language tool
-authority. See [interface details](docs/INTERFACES.md).
-
-## Jac-native graph
-
-```text
-jac check graph main.jac tests/graph_tests.jac
-jac test tests/graph_tests.jac
-jac run main.jac
-```
-
-[The graph module](graph/README.md) defines typed evidence and relation kinds,
-ingestion/link/retrieval walkers, and evidence-promotion checks using transient
-graphs. It demonstrates the native Jac model without altering a shared store.
-
-## What's implemented
-
-| Capability | Current boundary |
-|---|---|
-| Explicit docs/source ingestion | `.md`, `.txt`, `.jac`; max 100 KB per file |
-| Evidence graph | SQLite records and relations; exact project/version scope |
-| Symbol extraction | Lexical declaration candidates; compiler extractor planned |
-| Task context | Deterministic lexical ranking + one-hop relations; UTF-8 byte cap |
-| Compiler grounding | Real stdio Jac MCP handshake, tool discovery and validation |
-| Fix/pattern/task history | Explicit record and link API; no automatic verified-fix claim |
-| Jac-native schema/walkers | Separate runnable graph model and behavioral tests |
-| Agent interface | Local CLI and stdio MCP, no hosted accounts |
-
-## Design and contribution
-
-* [Architecture](docs/ARCHITECTURE.md) and [evidence schema](schemas/evidence.schema.json)
-* [Roadmap and acceptance gates](docs/ROADMAP.md)
-* [Prior art and existing Jac capabilities](docs/PRIOR-ART.md)
-* [Development and troubleshooting](CONTRIBUTING.md)
-
-Created by [Travis Jones / CosmonautJones](https://github.com/CosmonautJones),
-informed by hands-on Jac development during [M-Local](https://github.com/CosmonautJones/m-local).
-M-Local is a separate team project; this repository does not claim sole
-authorship of it. JacBrain is independent of the Jac/Jaseci maintainers.
-
-MIT licensed. Source notes and user-imported material retain their own licenses.
+Built by [Travis Jones](https://github.com/CosmonautJones), inspired by working
+with Jac on the [M-Local team project](https://github.com/CosmonautJones/m-local).
+Independent of the Jac/Jaseci maintainers. [MIT licensed](LICENSE).
